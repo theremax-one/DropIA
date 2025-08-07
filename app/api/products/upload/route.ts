@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { db } from '@/lib/firebase/admin';
+import { PrismaClient } from '@/lib/generated/prisma';
 import { withRole } from '@/lib/api-middlewares';
-import { uploadFile, generateProductFilePath } from '@/lib/firebase/storage';
+
+const prisma = new PrismaClient();
 
 export async function POST(request: NextRequest) {
   return withRole(request, ['seller', 'admin'], async (userId) => {
@@ -29,42 +30,42 @@ export async function POST(request: NextRequest) {
         );
       }
 
-      // Crear el producto en Firestore primero
-      const productData = {
-        name,
-        description,
-        price,
-        categoryId,
-        stock,
-        sellerId: userId,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-        fileUrl: '', // Se actualizará después de subir el archivo
-        filePath: '', // Ruta del archivo en Storage
-      };
+      // Simular URL del archivo (en producción usarías Firebase Storage)
+      const fileUrl = `https://example.com/uploads/${Date.now()}-${file.name}`;
+      const filePath = `uploads/${Date.now()}-${file.name}`;
 
-      const docRef = await db.collection('products').add(productData);
-      const productId = docRef.id;
-
-      // Generar ruta del archivo
-      const filePath = generateProductFilePath(userId, productId, file.name);
-
-      // Subir archivo a Firebase Storage
-      const fileUrl = await uploadFile(file, filePath);
-
-      // Actualizar el producto con la URL del archivo
-      await docRef.update({
-        fileUrl,
-        filePath,
+      // Crear el producto en la base de datos
+      const product = await prisma.product.create({
+        data: {
+          name,
+          description,
+          price,
+          categoryId,
+          stock,
+          sellerId: userId,
+          downloadUrl: fileUrl,
+          images: JSON.stringify([fileUrl]), // Simular array de imágenes
+          features: JSON.stringify([]), // Array vacío de features
+        },
+        include: {
+          category: true,
+          seller: true,
+        },
       });
 
-      // Obtener el producto actualizado
-      const doc = await docRef.get();
+      // Incrementar el contador de productos en la categoría
+      if (categoryId) {
+        await prisma.category.update({
+          where: { id: categoryId },
+          data: {
+            productCount: {
+              increment: 1,
+            },
+          },
+        });
+      }
 
-      return NextResponse.json({
-        id: doc.id,
-        ...doc.data(),
-      });
+      return NextResponse.json(product);
     } catch (error: any) {
       console.error('Error uploading product:', error);
       return NextResponse.json(

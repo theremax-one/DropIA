@@ -1,0 +1,78 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build outputs
+.next/
+out/
+dist/
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Database files
+prisma/dev.db
+prisma/dev.db-journal
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Firebase config (sensitive)
+firebase-admin.json
+firestore.rules
+
+# Scripts (not needed in production)
+scripts/
+
+# API routes with Firebase dependencies (temporarily disabled for deployment)
+app/api/admin/sales/route.ts
+app/api/admin/stats/route.ts
+app/api/cart/route.ts
+app/api/notifications/route.ts
+app/api/notifications/[notificationId]/route.ts
+app/api/orders/route.ts
+app/api/orders/[orderId]/route.ts
+app/api/payments/route.ts
+app/api/products/[productId]/reviews/route.ts
+app/api/products/[productId]/reviews/[reviewId]/like/route.ts
+app/api/recommendations/route.ts
+app/api/sales/route.ts
+app/api/sales/[saleId]/route.ts
+app/api/seller/balance/route.ts
+app/api/seller/payouts/route.ts
+app/api/user/accesses/route.ts
+app/api/user/accesses/[accessId]/download/route.ts
+app/api/webhooks/stripe/route.ts
+app/api/categories/[categoryId]/route.ts

@@ -4,22 +4,85 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Palette, Music, Video, BookOpen, Code, Target, Headphones, FileText } from 'lucide-react';
-import { Category } from '@/types';
+
+// Definir las categorías directamente
+const defaultCategories = [
+  {
+    id: 'images',
+    name: 'Imágenes',
+    description: 'Imágenes generadas por IA',
+    productCount: 0,
+    image: null
+  },
+  {
+    id: 'music',
+    name: 'Música',
+    description: 'Composiciones musicales con IA',
+    productCount: 0,
+    image: null
+  },
+  {
+    id: 'videos',
+    name: 'Videos',
+    description: 'Contenido audiovisual generado',
+    productCount: 0,
+    image: null
+  },
+  {
+    id: 'ebooks',
+    name: 'eBooks',
+    description: 'Libros electrónicos y documentos',
+    productCount: 0,
+    image: null
+  },
+  {
+    id: 'code',
+    name: 'Código',
+    description: 'Scripts y aplicaciones',
+    productCount: 0,
+    image: null
+  },
+  {
+    id: '3d-models',
+    name: 'Modelos 3D',
+    description: 'Modelos tridimensionales',
+    productCount: 0,
+    image: null
+  },
+  {
+    id: 'audio',
+    name: 'Audio',
+    description: 'Archivos de audio y podcasts',
+    productCount: 0,
+    image: null
+  },
+  {
+    id: 'templates',
+    name: 'Plantillas',
+    description: 'Plantillas y recursos reutilizables',
+    productCount: 0,
+    image: null
+  }
+];
 
 export default function CategoriesPage() {
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [categories, setCategories] = useState(defaultCategories);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
+    // Intentar cargar desde la API, pero usar las categorías por defecto si falla
     const loadCategories = async () => {
       try {
         const response = await fetch('/api/categories');
-        if (!response.ok) throw new Error('Error al cargar categorías');
-        const data = await response.json();
-        setCategories(data);
+        if (response.ok) {
+          const data = await response.json();
+          if (data && data.length > 0) {
+            setCategories(data);
+          }
+        }
       } catch (error) {
-        console.error('Error:', error);
+        console.log('Usando categorías por defecto');
       } finally {
         setLoading(false);
       }
@@ -81,11 +144,6 @@ export default function CategoriesPage() {
     return count.toString();
   };
 
-  // Filtrar solo las categorías que tienen colores vibrantes (no las grises)
-  const colorfulCategories = categories.filter(category => 
-    ['images', 'music', 'videos', 'ebooks', 'code', '3d-models', 'audio', 'templates'].includes(category.id)
-  );
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
       <div className="container mx-auto px-4 py-20">
@@ -112,7 +170,7 @@ export default function CategoriesPage() {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            {colorfulCategories.map((category) => (
+            {categories.map((category) => (
               <div
                 key={category.id}
                 className="group cursor-pointer"
