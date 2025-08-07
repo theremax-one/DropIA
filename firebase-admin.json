@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "dropia-f4c71",
+  "private_key_id": "b9c9b9c9b9c9b9c9b9c9b9c9b9c9b9c9b9c9b9c9",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDigmFmKn0NYrZQ\nLB2edvS0FiZW9T4r0XK6GZKGy6no8QtPe07ktdSgCgjE46tYkJTl5h1JxqGHW6\n24tIb8IILfSr1h\nCALjIQ+KyBxJKCumasaSyWOslAsqdox8WzBn0Rur5FV6F9VEo\nUyfQqwrub9vQYsEXIVW03Ii0Ux\nIy+RtD1Y5Q96dUfo8FSQrsZXstOQ7xjNRto6st\nlK/h330GAXIJovpy+t8G/sj2DAgpdB2GYpBJ8Z\n+nZqzPHH3kIy6yRAo1dfmRKa2v\nFue28xyUwF17e6keFei1ZRzz+Hc0GLjMVID9iAxnqs+OstKeVo\nfPQWrXHo109FZH\nB5WmqfoiAgMBAAECggEAAuVdPtPZPUDfcq+fLrPmzrH2hPFvqHHNyBkdW9siWy\nQO\n1GbAtsZUvuPk0sJCELmxpe62EmcdG6NZBTaekI9ggN0+Wd+oyhXkFA4r1IBBbtac\ne2edKhzs\nuLbqsID0qbNA7uVMBZSj3KOW/z4XB4ZW+/BuYSFgfzeCfEJuwjUNSdC6\nXXy+VMArO8NxapTN2L4H\n47rCRoOrOzDOl7m1WEjPG51uLHi6wH2JRWbH30g/uBuy\nrLEo19eYJves/L9ErWWbpT6jOVBN3ZIt\nxLbbwmbXV6Up7/DB5OU+DeTI6cgeW5VZ\nWz6QPyy55jYfg18yJb4CK1cK9yn3fb90fYDra9\nwmwKB\nqQDxGR5z9b2KHFnMdAH1\nVL8Xj7vkF7y4kzHOcULK4KSLo8IHUEa+QAM7A20hjunVUSvzdcihw14s\nxvAkrWOQ\nVEVLgdbHTQw327SVVDwIe7ft+M5K1Nnff5Vo+YXh1JPHDfv1nH4LnXkOpASmnvPD\Nz\nix6GWAe31BeK29gx79q5d3wwKBgQDwgmxnaWcYIxJIKp1jB2smMJChjf+YD9RZ\nC1OdwYqQtoADZQ\jCIq+7UGTJNMg53LjY82nFKTAISmFXk6LM6jcYhJQacMrFYtbI\nv9v9EpcSQQmThEK58pBzKXIPY2c\n7I/M2upeWMg6kdMP1p6TQSFGyZmUHQNoH5dnq1\nMRm28sYepwKBgQCjDzANZlI9q1cBdCQu7JYhNV\nD6PvOgIc05tlhaJfyjhKmhkKWH\n3ntQ2kxguetKHmX/PtXmsTJITnP0GmCQKK6FFtdQC8gLr0g/Bg\nijf2kyRWggLDz+\nb6d5S+1EW9xmcArBjEmjSWmqgTu0BSUQDrUE5gsFDn/0W84Fsjyvi/HxSQK8gQ\nCR\nerLL0qvzo7M5R92vuxsLHLE/p78FYf3WZs2LD1CMvHeulfy4QXb+3OA5/N1ocqS1\nRne1NQnC\n2gsLiFgfj0UIZZmYbMWaovUaNdVu1r6RbDfNE+QXrMV1epSeJRG57YEU\ntW8jcLho2etPGVmv3f7a\n4iM3KOFx3kLXOv4M9cj1XQK8gQCB3ROWdTEc7NWUbuj5\njAsOEboTxkbmtWSbuMHsT7/YOJyIvOPg\nIex1fPuetgFKOgAtY+2gdZr7ARDWAQNq\JmC6yyKK6zLtdUGdRdFzVFEUw87UvKy2Qf739n4HzgV9\nWX/FNMmj2H1HSMJQB/FwF\iu8h8YTyZRE1G1PH8qV3uMO5Vw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-fbsvc@dropia-f4c71.iam.gserviceaccount.com",
+  "client_id": "311408052631",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-fbsvc%40dropia-f4c71.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

@@ -1,0 +1,111 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  password  String
+  role      String   @default("user")
+  isSeller  Boolean  @default(false)
+  isAdmin   Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relaciones
+  products Product[] @relation("UserProducts")
+  orders   Order[]   @relation("UserOrders")
+  reviews  Review[]  @relation("UserReviews")
+}
+
+model Product {
+  id                   String   @id @default(cuid())
+  name                 String
+  description          String?
+  price                Float
+  images               String? // JSON string de array de URLs
+  categoryId           String?
+  sellerId             String
+  type                 String   @default("download")
+  features             String? // JSON string de array de features
+  requirements         String?
+  demoUrl              String?
+  downloadUrl          String?
+  apiEndpoint          String?
+  subscriptionDuration Int?
+  stock                Int      @default(0)
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  // Relaciones
+  seller     User        @relation("UserProducts", fields: [sellerId], references: [id])
+  category   Category?   @relation(fields: [categoryId], references: [id])
+  orderItems OrderItem[]
+  reviews    Review[]    @relation("ProductReviews")
+}
+
+model Category {
+  id           String   @id @default(cuid())
+  name         String
+  description  String?
+  image        String?
+  productCount Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Relaciones
+  products Product[]
+}
+
+model Order {
+  id        String   @id @default(cuid())
+  userId    String
+  status    String   @default("pending")
+  total     Float
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relaciones
+  user  User        @relation("UserOrders", fields: [userId], references: [id])
+  items OrderItem[]
+}
+
+model OrderItem {
+  id        String   @id @default(cuid())
+  orderId   String
+  productId String
+  quantity  Int
+  price     Float
+  createdAt DateTime @default(now())
+
+  // Relaciones
+  order   Order   @relation(fields: [orderId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  userId    String
+  productId String
+  rating    Int
+  comment   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relaciones
+  user    User    @relation("UserReviews", fields: [userId], references: [id])
+  product Product @relation("ProductReviews", fields: [productId], references: [id])
+}
